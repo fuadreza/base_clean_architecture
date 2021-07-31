@@ -9,7 +9,7 @@ class BaseApiClient {
 
   BaseApiClient({@required this.client});
 
-  Future<String> get(String url, {Map<String, dynamic> params, String path}) async {
+  Future<String> get({@required String url, Map<String, dynamic> params, String path}) async {
     final uri = params == null
         ? path == null
             ? Uri.https(baseUrl, url)
