@@ -5,6 +5,7 @@ import 'package:base_clean_architecture/feature/data/repository/movie_repository
 import 'package:base_clean_architecture/feature/data/service/movie_service.dart';
 import 'package:base_clean_architecture/feature/domain/repository/movie_repository.dart';
 import 'package:base_clean_architecture/feature/domain/usecase/get_movie_genres_use_case.dart';
+import 'package:base_clean_architecture/feature/presentation/bloc/movie_genre_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
@@ -12,14 +13,12 @@ final gi = GetIt.instance;
 
 Future<void> init() async {
   //! Features - Number Trivia
-  // Bloc
-  // gi.registerFactory(
-  //       () => NumberTriviaBloc(
-  //     concrete: gi(),
-  //     inputConverter: gi(),
-  //     random: gi(),
-  //   ),
-  // );
+  // Bloc Cubit
+  gi.registerFactory(
+        () => MovieGenreCubit(
+      getMovieGenresUseCase: gi(),
+    ),
+  );
 
   // Use cases
   gi.registerLazySingleton(
