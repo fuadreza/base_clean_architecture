@@ -1,6 +1,5 @@
 
 import 'package:base_clean_architecture/core/network/base_api_client.dart';
-import 'package:flutter/foundation.dart';
 
 class MovieService {
   final BaseApiClient apiClient;

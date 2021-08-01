@@ -7,7 +7,7 @@ import 'package:either_dart/src/either.dart';
 class GetMovieGenresUseCase implements UseCase<NoParams, List<MovieGenre>> {
   final MovieRepository repository;
 
-  GetMovieGenresUseCase(this.repository);
+  GetMovieGenresUseCase({required this.repository});
 
   @override
   Future<Either<Failure, List<MovieGenre>>> invoke(NoParams params) async {
