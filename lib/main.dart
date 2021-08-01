@@ -1,8 +1,8 @@
 import 'package:base_clean_architecture/core/theme/main_theme.dart';
-import 'package:base_clean_architecture/feature/presentation/screen/genre/movie_genre_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:base_clean_architecture/injection/injection.dart' as di;
 import 'package:flutter/scheduler.dart';
+import 'package:base_clean_architecture/core/route/main_route.dart' as router;
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
       darkTheme: MainTheme().dark,
       theme: MainTheme().light,
       themeMode: brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light,
-      home: MovieGenreScreen(),
+      onGenerateRoute: router.generateRoute,
+      initialRoute: router.MovieGenreScreenRoute,
     );
   }
 }

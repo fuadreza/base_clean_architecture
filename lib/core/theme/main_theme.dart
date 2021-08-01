@@ -10,6 +10,8 @@ class MainTheme {
     primaryColor: AppColors.primary,
     backgroundColor: AppColors.backgroundLight,
     accentColor: AppColors.white,
+    accentIconTheme: IconThemeData(color: AppColors.white),
+    dividerColor: Colors.white54,
   );
 
   final ThemeData dark = ThemeData.dark().copyWith(
@@ -17,6 +19,8 @@ class MainTheme {
     primaryColor: AppColors.primary,
     backgroundColor: AppColors.backgroundDark,
     accentColor: AppColors.black,
+    accentIconTheme: IconThemeData(color: AppColors.black),
+    dividerColor: Colors.black12,
   );
 
 }

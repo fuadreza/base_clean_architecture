@@ -1,14 +1,17 @@
+import 'package:base_clean_architecture/core/route/main_route.dart';
 import 'package:base_clean_architecture/feature/domain/entity/genre/movie_genre.dart';
 import 'package:base_clean_architecture/feature/presentation/bloc/bloc.dart';
+import 'package:base_clean_architecture/feature/presentation/screen/discovery/movie_discovery_screen.dart';
 import 'package:base_clean_architecture/injection/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MovieGenreScreen extends StatelessWidget {
-  const MovieGenreScreen({Key? key}) : super(key: key);
+  var _context;
 
   @override
   Widget build(BuildContext context) {
+    _context = context;
     return Scaffold(
       body: SafeArea(
         child: BlocProvider(
@@ -17,11 +20,7 @@ class MovieGenreScreen extends StatelessWidget {
             child: BlocConsumer<MovieGenreCubit, MovieState>(
               listener: (context, state) {
                 if (state is Error) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(state.message),
-                    ),
-                  );
+                  _showSnackBar(state.message);
                 }
               },
               builder: (context, state) {
@@ -77,7 +76,9 @@ class MovieGenreScreen extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    _onGenreSelected(movieGenres[index]);
+                  },
                   child: Center(
                     child: Text(movieGenres[index].name),
                   ),
@@ -87,6 +88,19 @@ class MovieGenreScreen extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  _onGenreSelected(MovieGenre genre){
+    final args = MovieDiscoveryScreenArgs(genreId: genre.id, genreName: genre.name);
+    goToScreen(_context, MovieDiscoveryScreenRoute, arguments: args);
+  }
+
+  _showSnackBar(String message){
+    ScaffoldMessenger.of(_context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
     );
   }
 }
