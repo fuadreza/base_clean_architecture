@@ -7,9 +7,9 @@ class BaseApiClient {
 
   final baseUrl = 'api.themoviedb.org/3';
 
-  BaseApiClient({@required this.client});
+  BaseApiClient({required this.client});
 
-  Future<String> get({@required String url, Map<String, dynamic> params, String path}) async {
+  Future<String> get({required String url, Map<String, dynamic>? params, String? path}) async {
     final uri = params == null
         ? path == null
             ? Uri.https(baseUrl, url)

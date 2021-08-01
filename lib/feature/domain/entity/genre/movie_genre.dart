@@ -6,8 +6,8 @@ class MovieGenre extends Equatable {
   final String name;
 
   MovieGenre({
-    @required this.id,
-    @required this.name
+    required this.id,
+    required this.name
   });
 
   @override

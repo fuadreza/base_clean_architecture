@@ -10,7 +10,7 @@ import 'package:flutter/foundation.dart';
 class MovieRepositoryImpl implements MovieRepository {
   final MovieRemoteDataSource remoteDataSource;
 
-  MovieRepositoryImpl({@required MovieRemoteDataSource this.remoteDataSource});
+  MovieRepositoryImpl({required MovieRemoteDataSource this.remoteDataSource});
 
   @override
   Future<Either<Failure, List<MovieGenre>>> getMovieGenres() async{

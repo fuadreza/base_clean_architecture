@@ -9,7 +9,7 @@ import 'package:flutter/foundation.dart';
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   final MovieService movieService;
 
-  MovieRemoteDataSourceImpl({@required this.movieService});
+  MovieRemoteDataSourceImpl({required this.movieService});
 
   @override
   Future<MovieGenreDto> getMovieGenres() async{
