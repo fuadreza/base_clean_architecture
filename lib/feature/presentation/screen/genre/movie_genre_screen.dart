@@ -1,4 +1,4 @@
-
+import 'package:base_clean_architecture/feature/domain/entity/genre/movie_genre.dart';
 import 'package:base_clean_architecture/feature/presentation/bloc/bloc.dart';
 import 'package:base_clean_architecture/injection/injection.dart';
 import 'package:flutter/material.dart';
@@ -35,9 +35,7 @@ class MovieGenreScreen extends StatelessWidget {
                     child: Text('Loading'),
                   );
                 } else if (state is Loaded) {
-                  return Center(
-                    child: Text('Data: ${state.data}'),
-                  );
+                  return _displayGenres(state.data);
                 } else {
                   return Center(
                     child: Text('Loading'),
@@ -48,6 +46,47 @@ class MovieGenreScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  _displayGenres(List<MovieGenre> movieGenres) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 16),
+          child: Text(
+            'Select Genre',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 21,
+            ),
+          ),
+        ),
+        Expanded(
+          child: GridView.count(
+            crossAxisCount: 2,
+            children: List.generate(movieGenres.length, (index) {
+              return Container(
+                margin: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                child: InkWell(
+                  onTap: () {},
+                  child: Center(
+                    child: Text(movieGenres[index].name),
+                  ),
+                ),
+              );
+            }),
+          ),
+        ),
+      ],
     );
   }
 }
