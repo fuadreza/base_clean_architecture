@@ -1,4 +1,3 @@
-
 import 'package:base_clean_architecture/core/network/base_api_client.dart';
 
 class MovieService {
@@ -8,7 +7,10 @@ class MovieService {
   MovieService({required this.apiClient});
 
   Future<String> getMovieGenres() async {
-    final url = '/genre/movie/list';
-    return apiClient.get(url: url, path: apiKey);
+    final url = '/3/genre/movie/list';
+    final params = {
+      'api_key': apiKey,
+    };
+    return apiClient.get(url: url, params: params);
   }
 }

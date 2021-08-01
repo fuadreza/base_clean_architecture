@@ -1,11 +1,10 @@
 import 'package:base_clean_architecture/core/error/exceptions.dart';
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 class BaseApiClient {
   final http.Client client;
 
-  final baseUrl = 'api.themoviedb.org/3';
+  final baseUrl = 'api.themoviedb.org';
 
   BaseApiClient({required this.client});
 
