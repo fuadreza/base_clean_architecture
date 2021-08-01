@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Movie Discovery',
       darkTheme: MainTheme().dark,
       theme: MainTheme().light,
       themeMode: brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light,
