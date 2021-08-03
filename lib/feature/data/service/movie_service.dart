@@ -13,4 +13,13 @@ class MovieService {
     };
     return apiClient.get(url: url, params: params);
   }
+
+  Future<String> getMoviesDiscovery(String genreId) async {
+    final url = '/3/discover/movie';
+    final params = {
+      'api_key': apiKey,
+      'with_genres': genreId
+    };
+    return apiClient.get(url: url, params: params);
+  }
 }
