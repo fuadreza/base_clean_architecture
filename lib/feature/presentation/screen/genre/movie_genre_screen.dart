@@ -15,7 +15,7 @@ class MovieGenreScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: BlocProvider(
-          create: (_) => gi<MovieGenreCubit>(),
+          create: (_) => di<MovieGenreCubit>(),
           child: Container(
             child: BlocConsumer<MovieGenreCubit, MovieState>(
               listener: (context, state) {

@@ -9,52 +9,52 @@ import 'package:base_clean_architecture/feature/presentation/bloc/movie_genre_cu
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
-final gi = GetIt.instance;
+final di = GetIt.instance;
 
 Future<void> init() async {
   //! Features - Number Trivia
   // Bloc Cubit
-  gi.registerFactory(
+  di.registerFactory(
         () => MovieGenreCubit(
-      getMovieGenresUseCase: gi(),
+      getMovieGenresUseCase: di(),
     ),
   );
 
   // Use cases
-  gi.registerLazySingleton(
+  di.registerLazySingleton(
     () => GetMovieGenresUseCase(
-      repository: gi(),
+      repository: di(),
     ),
   );
 
   // Repositories
-  gi.registerLazySingleton<MovieRepository>(
+  di.registerLazySingleton<MovieRepository>(
     () => MovieRepositoryImpl(
-      remoteDataSource: gi(),
+      remoteDataSource: di(),
     ),
   );
 
   // Data sources
-  gi.registerLazySingleton<MovieRemoteDataSource>(
+  di.registerLazySingleton<MovieRemoteDataSource>(
     () => MovieRemoteDataSourceImpl(
-      movieService: gi(),
+      movieService: di(),
     ),
   );
 
   // Services
-  gi.registerLazySingleton<MovieService>(
+  di.registerLazySingleton<MovieService>(
     () => MovieService(
-      apiClient: gi(),
+      apiClient: di(),
     ),
   );
 
   //! Core
-  gi.registerLazySingleton<BaseApiClient>(
+  di.registerLazySingleton<BaseApiClient>(
     () => BaseApiClient(
-      client: gi(),
+      client: di(),
     ),
   );
 
   //! External
-  gi.registerLazySingleton(() => http.Client());
+  di.registerLazySingleton(() => http.Client());
 }
