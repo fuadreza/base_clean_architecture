@@ -5,6 +5,8 @@ import 'package:base_clean_architecture/feature/data/repository/movie_repository
 import 'package:base_clean_architecture/feature/data/service/movie_service.dart';
 import 'package:base_clean_architecture/feature/domain/repository/movie_repository.dart';
 import 'package:base_clean_architecture/feature/domain/usecase/get_movie_genres_use_case.dart';
+import 'package:base_clean_architecture/feature/domain/usecase/get_movies_discovery_by_genre_use_case.dart';
+import 'package:base_clean_architecture/feature/presentation/bloc/bloc.dart';
 import 'package:base_clean_architecture/feature/presentation/bloc/movie_genre_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
@@ -12,17 +14,27 @@ import 'package:http/http.dart' as http;
 final di = GetIt.instance;
 
 Future<void> init() async {
-  //! Features - Number Trivia
+  //! Features - Movie
   // Bloc Cubit
   di.registerFactory(
-        () => MovieGenreCubit(
+    () => MovieGenreCubit(
       getMovieGenresUseCase: di(),
+    ),
+  );
+  di.registerFactory(
+    () => MovieDiscoveryCubit(
+      getMoviesDiscoveryByGenreUseCase: di(),
     ),
   );
 
   // Use cases
   di.registerLazySingleton(
     () => GetMovieGenresUseCase(
+      repository: di(),
+    ),
+  );
+  di.registerLazySingleton(
+    () => GetMoviesDiscoveryByGenreUseCase(
       repository: di(),
     ),
   );
